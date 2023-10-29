@@ -76,7 +76,11 @@ Options:
 
 ## Configurations
 
-Note that not all configurations are implemented for Squoosh CLI. Also, the [Squoosh CLI project](https://www.npmjs.com/package/@squoosh/cli) is no longer maintained.
+Note that the [Squoosh CLI project](https://www.npmjs.com/package/@squoosh/cli) project is no longer maintained by Google.
+
+All available CLI config options can be found here: [codecs.ts](https://github.com/doggy8088/squoosh/blob/cli/libsquoosh/src/codecs.ts)
+
+> It because the source code of the [@squoosh/cli](https://www.npmjs.com/package/@squoosh/cli) and [@squoosh/lib](https://www.npmjs.com/package/@squoosh/lib) has been removed from the [squoosh](https://github.com/GoogleChromeLabs/squoosh) repository. I made a fork to host all the last minute source code of the CLI in my GitHub repo.
 
 - [MozJPEG](https://github.com/GoogleChromeLabs/squoosh/blob/d87eff7645c151c2f4365c2515c71f4e56ed71ca/src/features/encoders/mozJPEG/shared/meta.ts#L22-L40) (`--mozjpeg [config]`)
 
@@ -187,43 +191,37 @@ Note that not all configurations are implemented for Squoosh CLI. Also, the [Squ
 
     ```js
     {
-      level: 2,
-      interlace: false,
+      level: 2
     }
     ```
 
-- [Rotate](https://github.com/GoogleChromeLabs/squoosh/blob/d87eff7645c151c2f4365c2515c71f4e56ed71ca/src/features/preprocessors/rotate/shared/meta.ts#L13-L19) (`--rotate [config]`)
+- [Rotate](https://github.com/doggy8088/squoosh/blob/42594277fd3d1f31b60103eb05cc8df62a82fb86/libsquoosh/src/codecs.ts#L45C3-L47) (`--rotate [config]`)
 
     ```js
     {
-      rotate: 0,
+      numRotations: 0
     }
     ```
 
-    > Possible values: `0` | `90` | `180` | `270`
+    > Possible values: `1` for 90 degree, `2` for 180 degree, ...etc.
 
-- [Resize](https://github.com/GoogleChromeLabs/squoosh/blob/d87eff7645c151c2f4365c2515c71f4e56ed71ca/src/features/processors/resize/shared/meta.ts#L59-L69) (`--resize [config]`)
+- [Resize](https://github.com/doggy8088/squoosh/blob/42594277fd3d1f31b60103eb05cc8df62a82fb86/libsquoosh/src/codecs.ts#L32C32-L38C2) (`--resize [config]`)
 
     ```js
     {
-      // Width and height will always default to the image size.
-      // This is set elsewhere.
-      width: 1,
-      height: 1,
-      // This will be set to 'vector' if the input is SVG.
-      method: 'lanczos3',
-      fitMethod: 'stretch',
+      width: number,
+      height: number,
+      method: 'triangle' | 'catrom' | 'mitchell' | 'lanczos3',
       premultiply: true,
       linearRGB: true,
     }
     ```
 
-- [Quantize](https://github.com/GoogleChromeLabs/squoosh/blob/d87eff7645c151c2f4365c2515c71f4e56ed71ca/src/features/processors/quantize/shared/meta.ts#L19-L23) (`--quant [config]`)
+- [Quantize](https://github.com/doggy8088/squoosh/blob/42594277fd3d1f31b60103eb05cc8df62a82fb86/libsquoosh/src/codecs.ts#L40C1-L43C2) (`--quant [config]`)
 
     ```js
     {
-      zx: 0,
-      maxNumColors: 256,
+      numColors: 256,
       dither: 1.0,
     }
     ```
@@ -231,6 +229,7 @@ Note that not all configurations are implemented for Squoosh CLI. Also, the [Squ
 ## Links
 
 - [willh/squoosh-cli - Docker Image | Docker Hub](https://hub.docker.com/r/willh/squoosh-cli)
+- The latest source of the CLI and LIB: <https://github.com/doggy8088/squoosh/tree/cli>
 - [@squoosh/cli - npm](https://www.npmjs.com/package/@squoosh/cli)
 - [GoogleChromeLabs/squoosh: Make images smaller using best-in-class codecs, right in the browser.](https://github.com/GoogleChromeLabs/squoosh)
 
