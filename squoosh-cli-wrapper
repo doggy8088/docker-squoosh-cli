@@ -1,0 +1,9 @@
+#!/bin/sh
+
+# Check if no input files are given
+if [ $# -eq 0 ]; then
+  echo "No input files specified. Usage: $0 <input files>"
+  exit 1
+fi
+
+squoosh-cli "$@"
