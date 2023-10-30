@@ -10,6 +10,20 @@ The Dockerized [squoosh-cli](https://www.npmjs.com/package/@squoosh/cli): An ada
 docker pull willh/squoosh-cli
 ```
 
+## Features
+
+* Support wildcard filename handling
+
+    ```sh
+    docker run --rm -it -v ${PWD}:/data willh/squoosh-cli --webp '{}' -d images_output *.png *.jpg
+    ```
+
+* Support directory handling
+
+    ```sh
+    docker run --rm -it -v ${PWD}:/data willh/squoosh-cli --webp '{}' -d images_output images
+    ```
+
 ## Usage
 
 The following examples are compatible with the **PowerShell** & **Bash** as the main shell environment. Don't use **Command Prompt** on Windows.
@@ -82,7 +96,7 @@ All available CLI config options can be found here: [codecs.ts](https://github.c
 
 > It because the source code of the [@squoosh/cli](https://www.npmjs.com/package/@squoosh/cli) and [@squoosh/lib](https://www.npmjs.com/package/@squoosh/lib) has been removed from the [squoosh](https://github.com/GoogleChromeLabs/squoosh) repository. I made a fork to host all the last minute source code of the CLI in my GitHub repo.
 
-- [MozJPEG](https://github.com/GoogleChromeLabs/squoosh/blob/d87eff7645c151c2f4365c2515c71f4e56ed71ca/src/features/encoders/mozJPEG/shared/meta.ts#L22-L40) (`--mozjpeg [config]`)
+* [MozJPEG](https://github.com/GoogleChromeLabs/squoosh/blob/d87eff7645c151c2f4365c2515c71f4e56ed71ca/src/features/encoders/mozJPEG/shared/meta.ts#L22-L40) (`--mozjpeg [config]`)
 
     ```js
     {
@@ -105,7 +119,7 @@ All available CLI config options can be found here: [codecs.ts](https://github.c
     }
     ```
 
-- [WebP](https://github.com/GoogleChromeLabs/squoosh/blob/d87eff7645c151c2f4365c2515c71f4e56ed71ca/src/features/encoders/avif/shared/meta.ts#L20-L31) (`--webp [config]`)
+* [WebP](https://github.com/GoogleChromeLabs/squoosh/blob/d87eff7645c151c2f4365c2515c71f4e56ed71ca/src/features/encoders/avif/shared/meta.ts#L20-L31) (`--webp [config]`)
 
     ```js
     {
@@ -139,7 +153,7 @@ All available CLI config options can be found here: [codecs.ts](https://github.c
     }
     ```
 
-- [AVIF](https://github.com/GoogleChromeLabs/squoosh/blob/d87eff7645c151c2f4365c2515c71f4e56ed71ca/src/features/encoders/jxl/shared/meta.ts#L20-L29) (`--avif [config]`)
+* [AVIF](https://github.com/GoogleChromeLabs/squoosh/blob/d87eff7645c151c2f4365c2515c71f4e56ed71ca/src/features/encoders/jxl/shared/meta.ts#L20-L29) (`--avif [config]`)
 
     ```js
     {
@@ -156,7 +170,7 @@ All available CLI config options can be found here: [codecs.ts](https://github.c
     }
     ```
 
-- [JPEG-XL](https://github.com/GoogleChromeLabs/squoosh/blob/d87eff7645c151c2f4365c2515c71f4e56ed71ca/src/features/encoders/jxl/shared/meta.ts#L20-L29) (`--jxl [config]`)
+* [JPEG-XL](https://github.com/GoogleChromeLabs/squoosh/blob/d87eff7645c151c2f4365c2515c71f4e56ed71ca/src/features/encoders/jxl/shared/meta.ts#L20-L29) (`--jxl [config]`)
 
     ```js
     {
@@ -171,7 +185,7 @@ All available CLI config options can be found here: [codecs.ts](https://github.c
     }
     ```
 
-- [WebP2](https://github.com/GoogleChromeLabs/squoosh/blob/d87eff7645c151c2f4365c2515c71f4e56ed71ca/src/features/encoders/wp2/shared/meta.ts#L21-L31) (`--wp2 [config]`)
+* [WebP2](https://github.com/GoogleChromeLabs/squoosh/blob/d87eff7645c151c2f4365c2515c71f4e56ed71ca/src/features/encoders/wp2/shared/meta.ts#L21-L31) (`--wp2 [config]`)
 
     ```js
     {
@@ -187,7 +201,7 @@ All available CLI config options can be found here: [codecs.ts](https://github.c
     }
     ```
 
-- [OxiPNG](https://github.com/GoogleChromeLabs/squoosh/blob/d87eff7645c151c2f4365c2515c71f4e56ed71ca/src/features/encoders/oxiPNG/shared/meta.ts#L22-L25) (`--oxipng [config]`)
+* [OxiPNG](https://github.com/GoogleChromeLabs/squoosh/blob/d87eff7645c151c2f4365c2515c71f4e56ed71ca/src/features/encoders/oxiPNG/shared/meta.ts#L22-L25) (`--oxipng [config]`)
 
     ```js
     {
@@ -195,7 +209,7 @@ All available CLI config options can be found here: [codecs.ts](https://github.c
     }
     ```
 
-- [Rotate](https://github.com/doggy8088/squoosh/blob/42594277fd3d1f31b60103eb05cc8df62a82fb86/libsquoosh/src/codecs.ts#L45C3-L47) (`--rotate [config]`)
+* [Rotate](https://github.com/doggy8088/squoosh/blob/42594277fd3d1f31b60103eb05cc8df62a82fb86/libsquoosh/src/codecs.ts#L45C3-L47) (`--rotate [config]`)
 
     ```js
     {
@@ -205,7 +219,7 @@ All available CLI config options can be found here: [codecs.ts](https://github.c
 
     > Possible values: `1` for 90 degree, `2` for 180 degree, ...etc.
 
-- [Resize](https://github.com/doggy8088/squoosh/blob/42594277fd3d1f31b60103eb05cc8df62a82fb86/libsquoosh/src/codecs.ts#L32C32-L38C2) (`--resize [config]`)
+* [Resize](https://github.com/doggy8088/squoosh/blob/42594277fd3d1f31b60103eb05cc8df62a82fb86/libsquoosh/src/codecs.ts#L32C32-L38C2) (`--resize [config]`)
 
     ```js
     {
@@ -217,7 +231,7 @@ All available CLI config options can be found here: [codecs.ts](https://github.c
     }
     ```
 
-- [Quantize](https://github.com/doggy8088/squoosh/blob/42594277fd3d1f31b60103eb05cc8df62a82fb86/libsquoosh/src/codecs.ts#L40C1-L43C2) (`--quant [config]`)
+* [Quantize](https://github.com/doggy8088/squoosh/blob/42594277fd3d1f31b60103eb05cc8df62a82fb86/libsquoosh/src/codecs.ts#L40C1-L43C2) (`--quant [config]`)
 
     ```js
     {
@@ -228,11 +242,11 @@ All available CLI config options can be found here: [codecs.ts](https://github.c
 
 ## Links
 
-- [willh/squoosh-cli - Docker Image | Docker Hub](https://hub.docker.com/r/willh/squoosh-cli)
-- The latest source of the CLI and LIB: <https://github.com/doggy8088/squoosh/tree/cli>
-- [@squoosh/cli - npm](https://www.npmjs.com/package/@squoosh/cli)
-- [GoogleChromeLabs/squoosh: Make images smaller using best-in-class codecs, right in the browser.](https://github.com/GoogleChromeLabs/squoosh)
+* [willh/squoosh-cli - Docker Image | Docker Hub](https://hub.docker.com/r/willh/squoosh-cli)
+* The latest source of the CLI and LIB: <https://github.com/doggy8088/squoosh/tree/cli>
+* [@squoosh/cli - npm](https://www.npmjs.com/package/@squoosh/cli)
+* [GoogleChromeLabs/squoosh: Make images smaller using best-in-class codecs, right in the browser.](https://github.com/GoogleChromeLabs/squoosh)
 
 ## Author
 
-- This [repository](https://github.com/doggy8088/docker-squoosh-cli) was created by [Will 保哥](https://www.facebook.com/will.fans/).
+* This [repository](https://github.com/doggy8088/docker-squoosh-cli) was created by [Will 保哥](https://www.facebook.com/will.fans/).

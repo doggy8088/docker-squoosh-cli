@@ -5,4 +5,90 @@ if [ $# -eq 0 ]; then
   exit 1
 fi
 
-squoosh-cli "$@"
+while [ $# -gt 0 ]; do
+  case "$1" in
+    -d|--output-dir)
+      output_dir="$2"
+      shift 2
+      ;;
+    -s|--suffix)
+      suffix="$2"
+      shift 2
+      ;;
+    --max-optimizer-rounds)
+      max_optimizer_rounds="$2"
+      shift 2
+      ;;
+    --optimizer-butteraugli-target)
+      optimizer_butteraugli_target="$2"
+      shift 2
+      ;;
+    --resize)
+      resize="$2"
+      shift 2
+      ;;
+    --quant)
+      quant="$2"
+      shift 2
+      ;;
+    --rotate)
+      rotate="$2"
+      shift 2
+      ;;
+    --mozjpeg)
+      mozjpeg="$2"
+      shift 2
+      ;;
+    --webp)
+      webp="$2"
+      shift 2
+      ;;
+    --avif)
+      avif="$2"
+      shift 2
+      ;;
+    --jxl)
+      jxl="$2"
+      shift 2
+      ;;
+    --wp2)
+      wp2="$2"
+      shift 2
+      ;;
+    --oxipng)
+      oxipng="$2"
+      shift 2
+      ;;
+    -h|--help)
+      squoosh-cli --help
+      exit 0
+      ;;
+    *)
+      break
+      ;;
+  esac
+done
+
+if [ $# -eq 1 ] && [ -d "$1" ]; then
+  set -- "$1"/*
+  if [ -z "$output_dir" ]; then
+    echo "Error: -d option is required when processing a directory"
+    exit 1
+  fi
+fi
+
+squoosh-cli \
+  ${output_dir:+-d "$output_dir"} \
+  ${suffix:+-s "$suffix"} \
+  ${max_optimizer_rounds:+--max-optimizer-rounds "$max_optimizer_rounds"} \
+  ${optimizer_butteraugli_target:+--optimizer-butteraugli-target "$optimizer_butteraugli_target"} \
+  ${resize:+--resize "$resize"} \
+  ${quant:+--quant "$quant"} \
+  ${rotate:+--rotate "$rotate"} \
+  ${mozjpeg:+--mozjpeg "$mozjpeg"} \
+  ${webp:+--webp "$webp"} \
+  ${avif:+--avif "$avif"} \
+  ${jxl:+--jxl "$jxl"} \
+  ${wp2:+--wp2 "$wp2"} \
+  ${oxipng:+--oxipng "$oxipng"} \
+  "$@"
